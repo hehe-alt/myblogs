@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="blog.myblog.mapper.InfoMapper">
+    <select id="queryInfos"  resultType="blog.myblog.entity.Info">
+        select * from info
+    </select>
+
+    <insert id="addInfo" parameterType="blog.myblog.entity.Info" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into info (name,mail,phone,message,createTime)
+        values (#{name},#{mail},#{phone},#{message},#{createTime} )
+    </insert>
+
+    <delete id="deleteInfoById" parameterType="Integer">
+        delete from info where id=#{id}
+    </delete>
+
+    <update id="updateInfoById"  >
+        UPDATE info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">name=#{name},</if>
+            <if test="mail!=null">mail=#{mail},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="message!=null">message=#{message},</if>
+            <if test="createTime!=null">createTime=#{createTime},</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="blog.myblog.mapper.AuthorMapper">
+    <select id="queryAuthors"  resultType="blog.myblog.entity.Author">
+        select * from author
+    </select>
+    <select id="queryAuthorByAccount" resultType="blog.myblog.entity.Author" parameterType="String">
+        select * from author where account = #{account}
+    </select>
+    <!--<select id="queryAuthorByName"   resultType="blog.myblog.entity.Author" parameterType="String">
+        select * from author where name = #{name}
+    </select>-->
+
+    <insert id="addAuthor" parameterType="blog.myblog.entity.Author" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into author (name,sex,num,mail,account,pwd,roleid)
+        values (#{name},#{sex},#{num},#{mail},#{account},#{pwd},#{roleid})
+    </insert>
+
+    <update id="updateAuthorById" >
+        UPDATE author
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">name=#{name},</if>
+            <if test="sex!=null">sex=#{sex},</if>
+            <if test="num!=null">num=#{num},</if>
+            <if test="mail!=null">mail=#{mail},</if>
+            <if test="roleid!=null">roleid=#{roleid},</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteAuthorByName" parameterType="String">
+        delete from author  where name=#{name}
+    </delete>
+
+</mapper>

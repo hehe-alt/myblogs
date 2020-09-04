@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录!</title>
+    <script th:src="@{/front/js/login.js}" > </script><!--引入点击输入框，放到输入框效果-->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/login01.css}"><!--引入背景汽包效果-->
+</head>
+<body>
+
+
+
+<div class="wrapper">
+    <div class="container">
+        <h1>欢迎登录</h1>
+        <p th:text="${msg}" style="color:orangered"></p>
+        <form class="form" th:action="@{/login}" th:method="Post">
+            <input type="text" placeholder="账号" name="account">
+            <input type="password" placeholder="密码" name="pwd">
+            <button type="submit" id="login-button">登录</button>
+        </form>
+    </div>
+
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

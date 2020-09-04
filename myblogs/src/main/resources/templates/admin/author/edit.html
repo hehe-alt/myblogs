@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../admin/css/amazeui.min.css" />
+    <link rel="stylesheet" href="../admin/css/admin.css" />
+    <style>
+        input {
+            box-sizing: border-box;
+            text-align:center;
+            font-size:1.4em;
+            height:2.7em;
+            border-radius:4px;
+            border:1px solid #c8cccf;
+            color:#6a6f77;
+            -web-kit-appearance:none;
+            -moz-appearance: none;
+            display:block;
+            outline:0;
+            padding:0 1em;
+            text-decoration:none;
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" >
+    <p style="margin-bottom: auto; font-family: 'Adobe 宋体 Std L';font-size: x-large;text-align: center;color:cornflowerblue">编辑用户信息</p>
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form method="post" th:action="@{/admin/authorEdit}">
+                <input th:value="${id}" type="hidden" name="id">
+                <input type="text" name="name" placeholder="姓名">
+                <input type="text" name="sex"  placeholder="性别">
+                <input type="text" name="num" placeholder="电话号码">
+                <input type="text" name="mail" placeholder="邮箱地址">
+                <input type="text" name="roleid" placeholder="用户角色:1(管理员)/2(vip)/3(普通用户)">
+                <div class="form-group">
+                    <button type="submit" class="btnedit am-btn am-btn-default am-btn-xl am-text-secondary" style="position: absolute; left: 47%; top: 100%;">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

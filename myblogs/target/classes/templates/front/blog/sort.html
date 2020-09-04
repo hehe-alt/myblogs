@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--共用头部-->
+    <header  th:replace="common/head::head"></header>
+    <title>欢迎来到首页！</title>
+</head>
+
+<body>
+<!--共用导航栏-->
+<div th:include="common/navbar :: html"/>
+<!--共用文章头-->
+<div th:include="common/header :: html"/>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 mx-auto"></div>
+        <div class="col-lg-6 col-md-6 mx-auto">
+                <form method="GET" th:action="@{/page}"><!--th:object="${blog}"-->
+                    <div th:each="theBlog,blogStat:${blogs}" th:if="${blogStat.count} <= 6" ><!--遍历前六条记录-->
+                        <div class="post-preview">
+                            <div>
+                                <h2><button th:text="${theBlog.title}" th:value="${theBlog.id}" name="id" style="border:none;background-color: #ffffff">文章标题</button></h2>
+                                <p class="post-meta">
+                                    作者：<a th:text="${theBlog.author}" ></a> </br>
+                                    时间：<a th:text="${theBlog.createTime}" ></a> </br>
+                                    分类：<a th:text="${theBlog.sort}"></a>     标签：<a th:text="${theBlog.tag}"></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        <div class="col-lg-3 col-md-3   ">
+            <div class="column">
+                <div class="col-md-0">
+                    <a th:href="@{/sort}">分类</a>
+                    <i class="fa fa-angle-double-right"></i>
+                </div>
+                <form method="GET" th:action="@{/queryBySort}">
+                    <div th:each="sort,sortStat:${#servletContext.getAttribute('sorts')}" th:if="${sortStat.count} <= 6" >
+                        <div class="col-md-0"><a><button  th:text="${sort}" name="sort" th:value="${sort}" style="border:none;background-color: #ffffff"></button></a></div>
+                    </div>
+                </form>
+                </br>
+
+                <div class="col-md-0">
+                    <a th:href="@{/tag}">标签</a>
+                    <i class="fa fa-align-center"></i>
+                </div>
+                <form method="GET" th:action="@{/queryByTag}">
+                    <div th:each="tag,tagStat:${#servletContext.getAttribute('tags')}" th:if="${tagStat.count} <= 6" >
+                        <div class="col-md-0"><a><button  th:text="${tag}" name="tag" th:value="${tag}" style="border:none;background-color: #ffffff"></button></a></div>
+                    </div>
+                </form>
+                </br>
+
+                <div class="col-md-0">
+                    <a th:href="@{/last}">最新</a>
+                    <i class="fa fa-copy"></i>
+                </div>
+                <form method="GET" th:action="@{/page}">
+                    <div th:each="last,lastStat:${#servletContext.lasts}" th:if="${lastStat.count} <= 4" >
+                        <div class="col-md-0"><a><button  th:text="${last.title}" name="id" th:value="${last.id}" style="border:none;background-color: #ffffff"></button></a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<hr>
+<!--共用底部-->
+<div th:include="common/footer :: footer"/>
+</body>
+</html>

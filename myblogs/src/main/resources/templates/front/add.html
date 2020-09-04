@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <!--共用头部-->
+    <header  th:replace="common/head::head"></header>
+    <title>新增页面</title>
+</head>
+<body style="background-image: url('../front/img/add_bg.jpg') ;background-size:100% 100%;background-repeat: no-repeat  ">
+
+<div class="container" >
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>请在下面的表单中编写自己的文章，然后点击提交按钮就可以保存成功了！</p>
+
+<form method="post" th:action="@{/add}">
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls" novalidate>
+            <input type="text" class="form-control" placeholder="标题" name="title" required data-validation-required-message="文章名不能为空">
+        </div>
+    </div>
+    <div class="control-group">
+        <div >
+            <label><input type="radio" class="form-control" name="tag"  value="读书笔记" checked />读书笔记</label>
+            <label><input type="radio" class="form-control" name="tag"  value="经验总结"/>经验总结</label>
+            <label><input type="radio" class="form-control" name="tag"  value="心得感悟"/>心得感悟</label>
+            <label><input type="radio" class="form-control" name="tag"  value="算法题目"/>算法题目</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            <textarea type="text" class="form-control" placeholder="内容" name="txt" required  style="height:200px;width: 800px"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="sendMessageButton">提交</button>
+    </div>
+</form>
+
+        </div>
+    </div>
+</div>
+
+<!--<script th:src="@{/js/jquery-min.js}"  ></script>
+<script th:src="@{/js/bootstrap-bundle-min.js}"  ></script>
+<script th:src="@{/js/clean-blog-min.js}" ></script>
+<script th:src="@{/js/jqBootstrapValidation.js}" ></script>
+<script th:src="@{/js/contact_me.js}" ></script>-->
+
+</body>
+</html>

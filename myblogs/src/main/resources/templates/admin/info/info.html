@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../admin/css/amazeui.min.css" />
+		<link rel="stylesheet" href="../admin/css/admin.css" />
+	</head>
+	<body>
+		<div class="admin-content-body">
+			<div class="am-cf am-padding am-padding-bottom-0">
+				<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">留言信息管理</strong><small></small></div>
+			</div>
+			<hr>
+			<div class="am-g">
+				<div class="am-u-sm-12 am-u-md-6">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button class="am-btn am-btn-default"><span class="am-icon-plus"></span><a th:href="@{/admin/infoToAdd}">新增</a></button>
+						</div>
+					</div>
+				</div>
+				<div class="am-u-sm-12 am-u-md-1"></div>
+				<div class="am-u-sm-12 am-u-md-5">
+					<div class="am-input-group am-input-group-sm">
+						<form method="GET" th:action="@{/admin/infoSearch}">
+							<span class="am-input-group-btn">
+									<input type="text" class="am-form-field" name="name" placeholder="根据留言用户的姓名模糊查询">
+									<button class="am-btn am-btn-default" type="submit" >搜索</button>
+							</span>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="am-g">
+				<div class="am-u-sm-12">
+					<form class="am-form" method="POST" th:action="@{/admin/infoOption}">
+						<table class="am-table am-table-striped am-table-hover table-main">
+							<thead>
+								<tr>
+									<th class="table-check">编辑确认</th>
+									<th class="table-check">删除确认</th>
+									<th>Id</th>
+									<th>姓名</th>
+									<th>邮箱</th>
+									<th>电话号码</th>
+									<th>信息</th>
+									<th>日期</th>
+									<th class="table-set">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="info,infoStat:${infos}" th:if="${infoStat.count} <= 10">
+									<td><input type="checkbox" th:value="'编辑'" name="opt" ></td>
+									<td><input type="checkbox"th:value="'删除'" name="opt" ></td>
+									<td th:text="${info.id}">id</td>
+									<td th:text="${info.name}">姓名</td>
+									<td th:text="${info.mail}">邮箱</td>
+									<td th:text="${info.phone}">电话号码</td>
+									<td th:text="${info.message}">信息</td>
+									<td th:text="${info.createTime}">日期</td>
+									<td>
+										<div class="am-btn-toolbar">
+											<div class="am-btn-group am-btn-group-xs">
+												<button th:value="${info.id}" name="id" class="btnedit am-btn am-btn-default am-btn-xs am-text-secondary"> <span class="am-icon-pencil-square-o"></span>编辑</button>
+												<button th:value="${info.id}" name="id" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span>删除</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<div class="am-cf">
+						共 <a th:text="${count}"></a> 条记录
+							<div class="am-fr">
+								<ul class="am-pagination">
+									<div>
+										<form method="GET" th:action="@{/admin/infoNextPage}" style="float: right; font-family: Arial;font-size: xx-large">
+											<a th:text="${page}" class="am-active"  >p</a>
+											<button th:text="${page+1}" th:value="${page}" name="page" style="border: none;background-color: #ffffff"><a>p+1</a></button>
+											<button th:text="${page+2}" th:value="${page}" name="page" style="border: none;background-color: #ffffff"><a>p+2</a></button>
+											<button type="submit" th:value="${page}" name="page" style="border: none;background-color: #ffffff"><a>»</a></button>
+										</form>
+										<form method="GET" th:action="@{/admin/infoPrePage}" style="float: right; font-family: Arial;font-size: xx-large">
+											<button type="submit" th:value="${page}" name="page" style="border: none;background-color: #ffffff"><a>«</a></button><!--class="am-disabled"-->
+										</form>
+									</div>
+								</ul>
+							</div>
+						</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../admin/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../admin/myplugs/js/plugs.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql:///blogs?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #druid数据源配置
+    initialSize: 1
+    minIdle: 3
+    maxActive: 10
+    maxWait: 3000
+    timeBetweenEvitionRunssMillis: 6000
+    minEvictableIdleTimeMills: 30000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    #配置监控统计拦截的filter，stat：统计监控 log4j：日志记录 wall：防御sql注入
+    filter: stat,wall,log4j
+    maxPoolPreparedStatmentPerConnectionSize: 20
+    useGlobelDateSourceStat: true
+    conncetionProperties: druid.stat.mergesql=true;druid.stat.slowSqlMillis=500
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+
+  mvc:
+    static-path-pattern: /static/**/**
+
+#禁用thymeleaf模板缓存
+thymeleaf:
+  cache: false
+#服务器端口
+server:
+  port: 8082
+  servlet:
+    session:
+      timeout: 3600s
+
+
+    #显示SQL语句
+    #logging:
+    #  level:
+    #   blog.myblog.mapper: trace
+    #   config: logback.xml

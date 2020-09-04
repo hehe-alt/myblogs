@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!--共用头部-->
+  <header  th:replace="common/head::head"></header>
+</head>
+
+<body>
+<!--共用导航栏-->
+<div th:include="common/navbar :: html"/>
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('../front/img/home.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>联系我</h1>
+          <span class="subheading">如有疑问，可以通过下方表格留言</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<form method="post" th:action="@{/contact}">
+  <div class="container mx-auto">
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls" novalidate>
+        <input type="text" class="form-control" placeholder="姓名" name="name" required data-validation-required-message="文章名不能为空">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls">
+        <input type="text" class="form-control" placeholder="邮箱地址" name="Email" required data-validation-required-message="作者不能为空">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls">
+        <input type="text" class="form-control" placeholder="电话号码" name="phone" required data-validation-required-message="作者id不能为空">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls">
+        <textarea type="text" class="form-control" placeholder="内容" name="message" required  style="height:200px;width: 800px"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" id="sendMessageButton">提交</button>
+    </div>
+  </div>
+</form>
+
+
+<hr>
+<!--共用底部-->
+<div th:include="common/footer :: footer"/>
+</body>
+</html>

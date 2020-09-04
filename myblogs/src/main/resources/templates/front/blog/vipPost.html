@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!--共用头部-->
+  <header  th:replace="common/head::head"></header>
+</head>
+
+<body>
+<!--共用导航栏-->
+<div th:include="common/navbar :: html"/>
+<!--共用文章头-->
+<div th:include="common/header :: html"/>
+
+<form th:object="${theBlog}">
+    <div class="col-lg-8 col-md-10 mx-auto" >
+      <div class="post-preview">
+        <div>
+          <h2 class="post-title" th:text="${theBlog.title}">文章标题</h2>
+          <p class="post-meta">作者：
+            <a href="#" th:text="${theBlog.author}"></a>
+          <P th:text="${theBlog.createTime}">时间</P>
+          </p>
+        </div>
+        <span th:text="${theBlog.txt}">内容</span>
+      </div>
+    </div>
+</form>
+
+<hr>
+<!--共用底部-->
+<div th:include="common/footer :: footer"/>
+</body>
+</html>
